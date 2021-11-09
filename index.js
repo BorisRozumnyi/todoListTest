@@ -8,16 +8,10 @@ const app = express();
 app.use(express.json());
 app.use('/test-url', testRouter);
 
-const start = async () => {
-  try {
-    app.listen(PORT, () =>
-      console.log(
-        `server started on port ${PORT}`
-      )
-    );
-  } catch (error) {
-    console.log('error', error.message);
-  }
-};
+app.get("/api", (req, res) => {
+  res.json({ message: "Hello from server!" });
+});
 
-start();
+app.listen(PORT, () => {
+  console.log(`Server listening on ${PORT}`);
+});
